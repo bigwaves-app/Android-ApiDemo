@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -35,16 +36,20 @@ import java.util.Map;
 
 public class ApiDemos extends ListActivity {
 
+    private static final String TAG = "ListActivity";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         Intent intent = getIntent();
         String path = intent.getStringExtra("com.example.android.apis.Path");
         
         if (path == null) {
             path = "";
         }
+        Log.d(TAG, "path=" + path);
+        System.out.println("path="+path);
 
         setListAdapter(new SimpleAdapter(this, getData(path),
                 android.R.layout.simple_list_item_1, new String[] { "title" },

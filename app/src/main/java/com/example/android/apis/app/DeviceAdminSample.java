@@ -107,8 +107,18 @@ public class DeviceAdminSample extends PreferenceActivity {
 
         // Prepare to work with the DPM
         mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+        Log.d(TAG, getLineNumber() + " onCreate xxx");
         mDeviceAdminSample = new ComponentName(this, DeviceAdminSampleReceiver.class);
     }
+
+    public static int getLineNumber() {
+//        for(StackTraceElement arr: Thread.currentThread().getStackTrace()){
+//            Log.d(TAG, arr.getClassName() + "" + arr.getLineNumber());
+//        }
+        return Thread.currentThread().getStackTrace()[3].getLineNumber();
+    }
+
+
 
     /**
      * We override this method to provide PreferenceActivity with the top-level preference headers.
